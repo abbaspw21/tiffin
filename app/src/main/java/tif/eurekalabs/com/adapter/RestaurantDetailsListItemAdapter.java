@@ -1,17 +1,23 @@
 package tif.eurekalabs.com.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
+import tif.eurekalabs.com.PackageWeeklyMenuActivity;
 import tif.eurekalabs.com.R;
+import tif.eurekalabs.com.RestaurantsDetailActivity;
 
 
 /**
@@ -20,38 +26,57 @@ import tif.eurekalabs.com.R;
 
 public class RestaurantDetailsListItemAdapter extends RecyclerView.Adapter<RestaurantDetailsListItemAdapter.MyViewHolder> {
 
-    public List<Drawable> list;
+    private List<Drawable> list;
 
-    RelativeLayout parent;
+    private RelativeLayout parent;
 
-    static String TAG = "RestaurantDetailsListItemAdapter";
+    private static String TAG = "RestaurantDetailsListItemAdapter";
 
-    Context context;
+    private Context context;
 
+    private int qunatity;
+    private int choice;
+
+    private Activity activity;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvDay;
-        TextView tvDescription;
 
-//        ExpandableLinearLayout expandableLinearLayout;
+        TextView tvViewMenu;
+        TextView tvQuantity;
+
+        ImageView ivAdd;
+        ImageView ivRemove;
+
+        LinearLayout llQuantity;
 
         public MyViewHolder(View view) {
             super(view);
+            llQuantity = (LinearLayout) view.findViewById(R.id.ll_quantity);
 
-            tvDay = (TextView) view.findViewById(R.id.tv_day);
-            tvDescription = (TextView) view.findViewById(R.id.tv_description);
+            tvViewMenu = (TextView) view.findViewById(R.id.tv_view_menu);
+            tvQuantity = (TextView) view.findViewById(R.id.tv_quantity);
 
-            //          expandableLinearLayout=(ExpandableLinearLayout) view.findViewById(R.id.expandableLayout);
-
-
+            ivAdd = (ImageView) view.findViewById(R.id.iv_add);
+            ivRemove = (ImageView) view.findViewById(R.id.iv_remove);
         }
     }
 
 
-    public RestaurantDetailsListItemAdapter(List<Drawable> feedsList, Context c) {
+    public RestaurantDetailsListItemAdapter(List<Drawable> feedsList, Context c, Activity activity) {
         this.list = feedsList;
         context = c;
+        choice = 0;
+        qunatity = 0;
+        this.activity = activity;
+    }
+
+    public RestaurantDetailsListItemAdapter(List<Drawable> feedsList, Context c, int choice, Activity activity) {
+        this.list = feedsList;
+        context = c;
+        qunatity = 0;
+        this.activity = activity;
+        this.choice = choice;
     }
 
     @Override
@@ -64,29 +89,45 @@ public class RestaurantDetailsListItemAdapter extends RecyclerView.Adapter<Resta
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        /*holder.expandableLinearLayout.setInRecyclerView(true);
-        holder.expandableLinearLayout.setListener(new ExpandableLayoutListenerAdapter() {
-            @Override
-            public void onPreOpen() {
-               *//* createRotateAnimator(holder.buttonLayout, 0f, 180f).start();
-                expandState.put(position, true);*//*
-               holder.tvDay.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_up_black,0);
-            }
 
+        if (choice == 1) {
+            holder.llQuantity.setVisibility(View.GONE);
+        }
+
+        holder.tvQuantity.setText("" + qunatity);
+
+        holder.ivAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPreClose() {
-              *//*  createRotateAnimator(holder.buttonLayout, 180f, 0f).start();
-                expandState.put(position, false);*//*
-                holder.tvDay.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_down_black,0);
+            public void onClick(View v) {
+                qunatity++;
+                holder.tvQuantity.setText("" + qunatity);
+                RestaurantsDetailActivity restaurantsDetailActivity = (RestaurantsDetailActivity) activity;
+                restaurantsDetailActivity.addToCart(200);
             }
         });
 
-        holder.tvDay.setOnClickListener(new View.OnClickListener() {
+        holder.ivRemove.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(final View v) {
-               holder.expandableLinearLayout.toggle();
+            public void onClick(View v) {
+                if (qunatity > 0) {
+                    qunatity--;
+                    holder.tvQuantity.setText("" + qunatity);
+                    RestaurantsDetailActivity restaurantsDetailActivity = (RestaurantsDetailActivity) activity;
+                    restaurantsDetailActivity.removeFromCart(200);
+                }
             }
-        });*/
+        });
+
+        holder.tvViewMenu.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, PackageWeeklyMenuActivity.class);
+                context.startActivity(i);
+            }
+        });
+
 
     }
 

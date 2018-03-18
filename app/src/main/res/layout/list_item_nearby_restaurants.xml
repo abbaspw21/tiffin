@@ -16,14 +16,16 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:paddingBottom="@dimen/margin_8"
+            android:id="@+id/rl_holder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="96dp">
 
             <ImageView
                 android:id="@+id/iv_icon"
                 android:layout_width="@dimen/nearby_restaurants_list_icon_size"
                 android:layout_height="@dimen/nearby_restaurants_list_icon_size"
-                android:layout_marginBottom="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_8"
                 android:layout_marginLeft="@dimen/margin_16"
                 android:layout_marginRight="@dimen/margin_16"
                 android:layout_marginTop="@dimen/margin_16"
@@ -52,7 +54,7 @@
                 android:layout_toRightOf="@id/iv_icon"
                 android:lines="1"
                 android:singleLine="true"
-                android:text="Loreum ipsum"
+                android:text="Serves lunch, breakfast and dinner"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/text_size_xxs" />
 
@@ -72,22 +74,11 @@
                 android:textColor="@color/colorRedText"
                 android:textSize="@dimen/text_size_xxs" />
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/tv_offers"
-                android:layout_marginRight="@dimen/margin_16"
-                android:layout_marginTop="@dimen/margin_4"
-                android:layout_toRightOf="@id/iv_icon"
-                android:background="@color/colorBg" />
-
             <TextView
                 android:id="@+id/tv_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/divider"
-                android:layout_marginLeft="@dimen/margin_8"
+                android:layout_below="@id/tv_offers"
                 android:layout_marginRight="@dimen/margin_8"
                 android:layout_marginTop="@dimen/margin_4"
                 android:layout_toRightOf="@id/iv_icon"
@@ -100,19 +91,24 @@
                 android:textSize="@dimen/text_size_xxs" />
 
             <TextView
-                android:id="@+id/tv_min_order"
+                android:id="@+id/tv_view_details"
+                android:paddingRight="@dimen/margin_8"
+                android:paddingLeft="@dimen/margin_8"
+                android:paddingTop="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_4"
+                android:text="Details"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_s"
+                android:background="@color/colorOrange"
+                android:layout_marginRight="@dimen/margin_16"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:layout_alignParentBottom="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/divider"
-                android:layout_marginLeft="@dimen/margin_8"
-                android:layout_marginRight="@dimen/margin_16"
-                android:layout_marginTop="@dimen/margin_4"
-                android:lines="1"
-                android:singleLine="true"
-                android:text="minimum order 200"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/text_size_xxs" />
+                />
+
+
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

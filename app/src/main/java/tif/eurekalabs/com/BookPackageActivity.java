@@ -1,10 +1,10 @@
 package tif.eurekalabs.com;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.support.design.widget.TabLayout;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -14,10 +14,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.Calendar;
 
@@ -27,18 +25,16 @@ public class BookPackageActivity extends AppCompatActivity implements View.OnCli
     AppCompatButton btnCheckout;
 
     AppCompatEditText etStartDate;
-    AppCompatEditText etEndDate;
+    AppCompatEditText etVendor;
     AppCompatEditText etBreakfastTimeSlot;
     AppCompatEditText etLunchTimeSlot;
     AppCompatEditText etDinnerTimeSlot;
 
-    TextView tvBreakfastPrice;
-    TextView tvLunchPrice;
-    TextView tvDinnerPrice;
-
     CheckBox cbBreakfast;
     CheckBox cbLunch;
     CheckBox cbDinner;
+
+    private static final int VENDOR_REQUEST_CODE =1;
 
     String[] listBreakfastTimes = {
             "7:00 - 7:30", "7:30 - 8:00", "8:00 - 8:30", "8:30 - 9:00", "9:00 - 9:30"};
@@ -52,15 +48,11 @@ public class BookPackageActivity extends AppCompatActivity implements View.OnCli
 
         btnCheckout = (AppCompatButton) findViewById(R.id.btn_checkout);
 
-        etEndDate = (AppCompatEditText) findViewById(R.id.et_enddate);
+        etVendor = (AppCompatEditText) findViewById(R.id.et_vendor);
         etStartDate = (AppCompatEditText) findViewById(R.id.et_startdate);
         etBreakfastTimeSlot = (AppCompatEditText) findViewById(R.id.et_breakfast_timeslot);
         etLunchTimeSlot = (AppCompatEditText) findViewById(R.id.et_lunch_timeslot);
         etDinnerTimeSlot = (AppCompatEditText) findViewById(R.id.et_dinner_timeslot);
-
-        tvBreakfastPrice = (TextView) findViewById(R.id.tv_breakfast_price);
-        tvLunchPrice = (TextView) findViewById(R.id.tv_lunch_price);
-        tvDinnerPrice = (TextView) findViewById(R.id.tv_dinner_price);
 
         cbBreakfast = (CheckBox) findViewById(R.id.cb_breakfast);
         cbLunch = (CheckBox) findViewById(R.id.cb_lunch);
@@ -79,6 +71,7 @@ public class BookPackageActivity extends AppCompatActivity implements View.OnCli
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_back_white));
 
         etStartDate.setOnClickListener(this);
+        etVendor.setOnClickListener(this);
         etBreakfastTimeSlot.setOnClickListener(this);
         etLunchTimeSlot.setOnClickListener(this);
         etDinnerTimeSlot.setOnClickListener(this);
@@ -109,25 +102,38 @@ public class BookPackageActivity extends AppCompatActivity implements View.OnCli
                                                   int monthOfYear, int dayOfMonth) {
 
                                 etStartDate.setText(dayOfMonth + " / " + (monthOfYear + 1) + " / " + year);
-                                c.set(year, monthOfYear, dayOfMonth);
-                                c.add(Calendar.MONTH, 1);
-                                etEndDate.setText(c.get(Calendar.DAY_OF_MONTH) + " / " + (c.get(Calendar.MONTH) + 1) + " / " + c.get(Calendar.YEAR));
 
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
                 datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
                 break;
+            case R.id.et_vendor :
+                Intent i=new Intent(this,SelectRestaurantActivity.class);
+                startActivityForResult(i, VENDOR_REQUEST_CODE);
+                overridePendingTransition( R.anim.slide_in_up, R.anim.stay );
+                break;
             case R.id.et_breakfast_timeslot:
+                if(cbBreakfast.isChecked())
                 showTimeSlotsDialog(listBreakfastTimes, etBreakfastTimeSlot);
                 break;
             case R.id.et_lunch_timeslot:
+                if(cbLunch.isChecked())
                 showTimeSlotsDialog(listBreakfastTimes, etLunchTimeSlot);
                 break;
             case R.id.et_dinner_timeslot:
+                if(cbDinner.isChecked())
                 showTimeSlotsDialog(listBreakfastTimes, etDinnerTimeSlot);
                 break;
             case R.id.btn_checkout:
+                if(etStartDate.getText().toString()!=null&&etStartDate.getText().toString().contentEquals(""))
+                {
+                }
+                else if(etVendor.getText().toString()!=null&&etVendor.getText().toString().contentEquals(""))
+                {
+                }else
+                {
+                }
                 break;
             case R.id.cb_breakfast:
                 if (cbBreakfast.isChecked()) {
@@ -177,5 +183,16 @@ public class BookPackageActivity extends AppCompatActivity implements View.OnCli
         });
 
         dialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode== VENDOR_REQUEST_CODE)
+        {
+            if(resultCode == Activity.RESULT_OK){
+                etVendor.setText(""+data.getStringExtra("title"));
+            }
+        }
     }
 }

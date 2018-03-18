@@ -15,13 +15,15 @@
         android:background="@color/colorBg"
         android:fitsSystemWindows="true"
         android:id="@+id/appbar"
+        android:elevation="0dp"
+        app:elevation="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="330dp"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@color/colorPrimary"
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:titleEnabled="false">
@@ -35,69 +37,91 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="150dp"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_dish" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:alpha="0.3"
+                    android:layout_height="150dp"
+                    android:alpha="0.5"
                     android:background="@android:color/black"
                     android:fitsSystemWindows="true" />
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cv_toolbar"
+                <RelativeLayout
+                    android:paddingLeft="@dimen/margin_24"
+                    android:paddingRight="@dimen/margin_24"
+                    android:paddingTop="@dimen/margin_16"
+                    android:paddingBottom="@dimen/margin_16"
+                    android:layout_marginTop="150dp"
+                    android:background="@color/colorWhite"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_40"
-                    android:layout_marginLeft="@dimen/margin_32"
-                    android:layout_marginRight= "@dimen/margin_32"
-                    android:layout_marginTop="156dp"
-                    android:background="@color/colorWhite">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginRight="@dimen/margin_16"
+                        android:layout_alignParentLeft="true"
+                        android:layout_toLeftOf="@id/tv_rating"
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/margin_16">
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:text="Lorem ipsum"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/text_size_l"
+                        android:fontFamily="sans-serif" />
 
-                        <TextView
-                            android:id="@+id/tv_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:lines="1"
-                            android:singleLine="true"
-                            android:text="Lorem ipsum"
-                            android:textColor="@color/colorPrimaryText"
-                            android:textSize="@dimen/text_size_xl"
-                            android:fontFamily="sans-serif" />
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/tv_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:drawableLeft="@drawable/ic_star_grey"
+                        android:drawablePadding="@dimen/margin_4"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:text="3.6"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/text_size" />
 
-                        <TextView
-                            android:id="@+id/tv_rating"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/tv_name"
-                            android:fontFamily="sans-serif"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="@dimen/margin_8"
-                            android:drawableLeft="@drawable/ic_star_grey"
-                            android:drawablePadding="@dimen/margin_4"
-                            android:gravity="center_horizontal"
-                            android:lines="1"
-                            android:singleLine="true"
-                            android:text="3.6"
-                            android:textColor="@color/colorSecondaryText"
-                            android:textSize="@dimen/text_size" />
-                    </RelativeLayout>
+                    <TextView
+                        android:layout_marginTop="@dimen/margin_16"
+                        android:layout_below="@id/tv_name"
+                        android:id="@+id/tv_phone_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:drawableLeft="@drawable/ic_contact_grey_16"
+                        android:drawablePadding="@dimen/margin_16"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:text="+91-9806773241"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/text_size_xs" />
 
-                </android.support.v7.widget.CardView>
-
+                    <TextView
+                        android:layout_marginTop="@dimen/margin_8"
+                        android:layout_below="@id/tv_phone_number"
+                        android:id="@+id/tv_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:drawableLeft="@drawable/ic_location_grey_16"
+                        android:drawablePadding="@dimen/margin_16"
+                        android:lines="2"
+                        android:text="Loreum ispum Loreum ispum Loreum ispum Loreum ispum Loreum ispum Loreum ispum Loreum ispum"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/text_size_xs" />
+                </RelativeLayout>
             </RelativeLayout>
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
+                android:elevation="2dp"
+                app:elevation="2dp"
+
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="top"
@@ -128,14 +152,17 @@
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
-                app:tabMode="scrollable"
+                app:tabMode="fixed"
+                android:elevation="0dp"
                 app:tabTextAppearance="@style/TabStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:tabGravity="center"
                 android:layout_gravity="bottom|center_horizontal"
-                app:tabIndicatorColor="@color/colorWhite"
-                app:tabSelectedTextColor="@color/colorWhite"
-                app:tabTextColor="@color/colorWhite" />
+                android:background="@color/colorBg"
+                app:tabIndicatorColor="@color/colorOrange"
+                app:tabSelectedTextColor="@color/colorOrange"
+                app:tabTextColor="@color/colorPrimaryText" />
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -149,6 +176,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <FrameLayout
+        android:visibility="gone"
         android:id="@+id/fl_view_cart"
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -161,7 +189,7 @@
             <TextView
                 android:layout_marginLeft="@dimen/margin_16"
                 android:layout_marginTop="@dimen/margin_8"
-                android:text="6 items"
+                android:text="0 items"
                 android:textSize="@dimen/text_size_xs"
                 android:textColor="@color/colorWhite"
                 android:id="@+id/tv_items"
@@ -176,7 +204,7 @@
                 android:layout_alignRight="@id/tv_items"
                 android:layout_marginLeft="@dimen/margin_16"
                 android:layout_below="@id/tv_items"
-                android:text="530"
+                android:text="0"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_xs"
                 android:textColor="@color/colorWhite"

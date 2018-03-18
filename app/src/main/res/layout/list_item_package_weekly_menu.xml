@@ -19,20 +19,42 @@
 
             <TextView
                 android:id="@+id/tv_day"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_16"
+                android:paddingTop="@dimen/margin_16"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_8"
                 android:text="Monday"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/colorOrange"
                 android:textSize="@dimen/text_size" />
 
             <TextView
+
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/margin_16"
+                android:paddingRight="@dimen/margin_16"
+                android:text="@string/Rs700"
+                android:textColor="@color/colorRedText"
+                android:textSize="@dimen/text_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/tv_day"
+                android:background="@color/colorBg"/>
+
+            <TextView
+                android:paddingTop="@dimen/margin_8"
                 android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="@color/colorCVSecondaryBg"
-                android:padding="@dimen/margin_16"
+                android:paddingBottom="@dimen/margin_16"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingRight="@dimen/margin_16"
                 android:layout_below="@id/tv_day"
                 android:text="sample.sample.sample.sample.sample.sample.sample.sample.sample.sample.\n"
                 android:textColor="@color/colorSecondaryText"

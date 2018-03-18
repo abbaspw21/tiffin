@@ -31,20 +31,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="Package Details"
+                android:text="Menu Details"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_size_l"
                 android:textStyle="bold" />
         </android.support.v7.widget.Toolbar>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/colorWhite"
-            app:tabSelectedTextColor="@color/colorWhite"
-            app:tabTextAppearance="@style/TabStyle"
-            app:tabTextColor="@color/colorWhite" />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.AppCompatButton
@@ -52,6 +43,7 @@
         android:layout_height="@dimen/button_height"
         android:background="@color/colorPrimary"
         android:text="Book Now"
+        android:visibility="gone"
         android:textSize="@dimen/text_size"
         android:textColor="@color/colorWhite"
         android:textAllCaps="false"
@@ -59,13 +51,13 @@
         android:layout_alignParentBottom="true"
         />
 
-    <android.support.v4.view.ViewPager
-
-        android:layout_above="@id/btn_book"
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_menu"
         android:layout_below="@id/appbar"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_above="@id/btn_book"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

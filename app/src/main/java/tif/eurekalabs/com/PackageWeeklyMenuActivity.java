@@ -1,31 +1,29 @@
 package tif.eurekalabs.com;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import tif.eurekalabs.com.fragment.packageWeeklyMenu.BreakfastFragment;
-import tif.eurekalabs.com.fragment.packageWeeklyMenu.DinnerFragment;
-import tif.eurekalabs.com.fragment.packageWeeklyMenu.LunchFragment;
+import tif.eurekalabs.com.adapter.PackageWeeklyMenuListItemAdapter;
 
 public class PackageWeeklyMenuActivity extends AppCompatActivity {
 
-    ViewPager viewPager;
-
-    TabLayout tabLayout;
-
     Toolbar toolbar;
+
+    RecyclerView rvMenu;
+
+    List<Drawable> bannerList = new ArrayList<>();
+
+    PackageWeeklyMenuListItemAdapter adapter;
 
     AppCompatButton btnBook;
 
@@ -35,13 +33,10 @@ public class PackageWeeklyMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_package_weekly_menu);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        rvMenu=(RecyclerView) findViewById(R.id.rv_menu);
 
         btnBook=(AppCompatButton) findViewById(R.id.btn_book);
-
-        viewPager=(ViewPager) findViewById(R.id.viewpager) ;
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
 
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -55,44 +50,18 @@ public class PackageWeeklyMenuActivity extends AppCompatActivity {
         });
         toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.drawable.ic_back_white));
 
-    }
+        bannerList.add(ContextCompat.getDrawable(this,R.drawable.img_ad_1));
+        bannerList.add(ContextCompat.getDrawable(this,R.drawable.img_ad_2));
+        bannerList.add(ContextCompat.getDrawable(this,R.drawable.img_ad_3));
+        bannerList.add(ContextCompat.getDrawable(this,R.drawable.img_ad_1));
+        bannerList.add(ContextCompat.getDrawable(this,R.drawable.img_ad_2));
+        bannerList.add(ContextCompat.getDrawable(this,R.drawable.img_ad_3));
 
+        adapter = new PackageWeeklyMenuListItemAdapter(bannerList, this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        rvMenu.setLayoutManager(mLayoutManager);
+        rvMenu.setAdapter(adapter);
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new BreakfastFragment(), "Breakfast");
-        adapter.addFragment(new LunchFragment(), "Lunch");
-        adapter.addFragment(new DinnerFragment(), "Dinner");
-        viewPager.setAdapter(adapter);
-    }
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
     }
 
 }

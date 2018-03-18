@@ -21,17 +21,25 @@
 
             <ImageView
                 android:id="@+id/iv_icon"
-                android:layout_width="@dimen/nearby_restaurants_list_icon_size"
-                android:layout_height="@dimen/nearby_restaurants_list_icon_size"
-                android:layout_marginBottom="@dimen/margin_16"
+                android:layout_width="@dimen/package_list_icon_size"
+                android:layout_height="@dimen/package_list_icon_size"
+                android:layout_marginBottom="@dimen/margin_8"
                 android:layout_marginLeft="@dimen/margin_16"
                 android:layout_marginRight="@dimen/margin_16"
                 android:layout_marginTop="@dimen/margin_16"
                 android:src="@drawable/img_ad_1" />
 
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_veg"
+                android:layout_marginLeft="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_16"
+                />
+
+
             <TextView
-                android:drawablePadding="@dimen/margin_8"
-                android:drawableLeft="@drawable/ic_veg"
                 android:id="@+id/tv_name"
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
@@ -43,8 +51,7 @@
                 android:singleLine="true"
                 android:text="Loreum ipsum"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_size_xs"
-                android:layout_toLeftOf="@id/iv_cart"/>
+                android:textSize="@dimen/text_size_xs"/>
 
             <TextView
                 android:id="@+id/tv_description"
@@ -57,11 +64,9 @@
                 android:lines="2"
                 android:text="Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum"
                 android:textColor="@color/colorSecondaryText"
-                android:layout_toLeftOf="@id/iv_cart"
                 android:textSize="@dimen/text_size_xxs" />
 
             <TextView
-                android:layout_toLeftOf="@id/iv_cart"
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,15 +79,75 @@
                 android:textColor="@color/colorRedText"
                 android:textSize="@dimen/text_size_xxs" />
 
-            <ImageView
-                android:id="@+id/iv_cart"
-                android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_add_to_cart_grey"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+
+            <LinearLayout
                 android:layout_marginRight="@dimen/margin_16"
+               android:layout_marginBottom="@dimen/margin_8"
+                android:layout_above="@id/divider"
+                android:id="@+id/ll_quantity"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/border_quantity"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="@dimen/margin_4"
+                    android:paddingRight="@dimen/margin_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_remove"
+                    android:src="@drawable/ic_remove_grey_16"
+                    />
+
+                <TextView
+                    android:layout_marginLeft="@dimen/margin_4"
+                    android:layout_marginRight="@dimen/margin_4"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_s"
+                    android:textColor="@color/colorOrange"
+                    android:text="0"
+                    android:id="@+id/tv_quantity"
+                    />
+
+                <ImageView
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="@dimen/margin_4"
+                    android:paddingRight="@dimen/margin_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_add"
+                    android:src="@drawable/ic_add_grey_16"
+                    />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/iv_icon"
+                android:background="@color/colorBg"/>
+
+            <TextView
+                android:id="@+id/tv_view_menu"
+                android:paddingBottom="@dimen/margin_12"
+                android:paddingTop="@dimen/margin_8"
+                android:layout_below="@id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorOrange"
+                android:text="View Menu"
+                android:textSize="@dimen/text_size_s"
+
+                android:gravity="center_horizontal"
                 />
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

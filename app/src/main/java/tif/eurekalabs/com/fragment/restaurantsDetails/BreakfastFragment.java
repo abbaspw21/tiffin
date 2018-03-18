@@ -1,6 +1,7 @@
 package tif.eurekalabs.com.fragment.restaurantsDetails;
 
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,12 +24,13 @@ import tif.eurekalabs.com.adapter.RestaurantDetailsListItemAdapter;
 public class BreakfastFragment extends Fragment {
 
 
-    View root;
-    RecyclerView rvMenu;
+    private   View root;
 
-    List<Drawable> bannerList = new ArrayList<>();
+    private RecyclerView rvMenu;
 
-    RestaurantDetailsListItemAdapter adapter;
+    private List<Drawable> bannerList = new ArrayList<>();
+
+    private RestaurantDetailsListItemAdapter adapter;
 
     public BreakfastFragment() {
         // Required empty public constructor
@@ -41,18 +43,26 @@ public class BreakfastFragment extends Fragment {
         // Inflate the layout for this fragment
         root= inflater.inflate(R.layout.fragment_restaurants_detail_breakfast, container, false);
 
-        rvMenu=(RecyclerView) root.findViewById(R.id.rv_menu);
-        bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_1));
-        bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_2));
-        bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_3));
-        bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_1));
-        bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_2));
-        bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_3));
+        Intent intent = getActivity().getIntent();
+        int showBuyId = intent.getIntExtra("SHOW_BUY_ID",0);
 
-        adapter = new RestaurantDetailsListItemAdapter(bannerList, getContext());
+        rvMenu=(RecyclerView) root.findViewById(R.id.rv_menu);
+
+        bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_1));
+
+        if(showBuyId==1)
+        {
+            adapter = new RestaurantDetailsListItemAdapter(bannerList, getContext(),1,getActivity());
+        }else
+        {
+            adapter = new RestaurantDetailsListItemAdapter(bannerList, getContext(),getActivity());
+        }
+
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         rvMenu.setLayoutManager(mLayoutManager);
         rvMenu.setAdapter(adapter);
+
+
 
         return root;
     }

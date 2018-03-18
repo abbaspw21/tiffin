@@ -22,6 +22,7 @@
             android:background="@color/colorPrimary"
             android:visibility="visible"
             app:elevation="2dp"
+            app:contentInsetStartWithNavigation="0dp"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -31,10 +32,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="Package Details"
+                android:text="Daimond Package"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_size_l"
                 android:textStyle="bold" />
+
+
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
@@ -44,85 +47,73 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:text="Check Out"
+        android:background="@color/colorOrange"
+        android:text="Proceed To Pay 3000 Rs"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_size" />
 
     <RelativeLayout
-        android:id="@+id/date_holder"
+        android:id="@+id/rl_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/btn_checkout"
         android:background="@color/colorWhite">
 
-        <TextView
-            android:id="@+id/tv_choose_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/margin_16"
-            android:text="Choose Date"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="@dimen/text_size" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_choose_date"
-            android:orientation="horizontal"
-            android:weightSum="2">
 
             <android.support.v7.widget.AppCompatEditText
                 android:editable="false"
                 android:focusable="false"
                 android:id="@+id/et_startdate"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_16"
                 android:layout_marginLeft="@dimen/margin_16"
-                android:layout_marginRight="@dimen/margin_8"
+                android:layout_marginRight="@dimen/margin_16"
                 android:layout_weight="1"
                 android:background="@color/colorBg"
                 android:drawableRight="@drawable/ic_calendar_grey"
                 android:hint="Start Date"
                 android:lines="1"
                 android:maxLines="1"
+                android:layout_below="@id/et_vendor"
                 android:padding="12dp"
                 android:singleLine="true"
                 android:textColor="@color/colorEditText"
                 android:textSize="@dimen/text_size_s"
                 android:theme="@style/AppThemeBlack.EditText" />
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/et_enddate"
-                android:editable="false"
-                android:focusable="false"
-                android:clickable="false"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_16"
-                android:layout_marginLeft="@dimen/margin_8"
-                android:layout_marginRight="@dimen/margin_16"
-                android:layout_weight="1"
-                android:background="@color/colorBg"
-                android:drawableRight="@drawable/ic_calendar_grey"
-                android:hint="End Date"
-                android:lines="1"
-                android:maxLines="1"
-                android:padding="12dp"
-                android:singleLine="true"
-                android:textColor="@color/colorEditText"
-                android:textSize="@dimen/text_size_s"
-                android:theme="@style/AppThemeBlack.EditText" />
-        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:editable="false"
+            android:layout_marginTop="@dimen/margin_16"
+            android:focusable="false"
+            android:id="@+id/et_vendor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:layout_marginLeft="@dimen/margin_16"
+            android:layout_marginRight="@dimen/margin_16"
+            android:layout_weight="1"
+            android:background="@color/colorBg"
+            android:drawableRight="@drawable/ic_vendor_grey"
+            android:hint="Select Vendor"
+            android:lines="1"
+            android:maxLines="1"
+            android:padding="12dp"
+            android:singleLine="true"
+            android:textColor="@color/colorEditText"
+            android:textSize="@dimen/text_size_s"
+            android:theme="@style/AppThemeBlack.EditText" />
+
+
     </RelativeLayout>
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:layout_above="@id/date_holder"
+        android:layout_above="@id/rl_holder"
         android:background="@drawable/border_bottom_menu"></View>
 
     <android.support.v4.widget.NestedScrollView
@@ -207,23 +198,9 @@
                     android:id="@+id/cb_breakfast"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorOrange"
                     android:text="Breakfast"
                     android:layout_marginRight="@dimen/margin_8"/>
-
-                <TextView
-                    android:id="@+id/tv_breakfast_price"
-                    android:gravity="center_vertical"
-                    android:layout_alignTop="@id/cb_breakfast"
-                    android:layout_alignBottom="@id/cb_breakfast"
-                    android:text="2000 INR"
-                    android:layout_marginRight="@dimen/margin_24"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_s"
-                    android:textColor="@color/colorSecondaryText"
-                    />
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/et_breakfast_timeslot"
@@ -267,23 +244,10 @@
                     android:id="@+id/cb_lunch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorOrange"
                     android:text="Lunch"
                     android:layout_marginRight="@dimen/margin_16"/>
 
-                <TextView
-                    android:id="@+id/tv_lunch_price"
-                    android:gravity="center_vertical"
-                    android:layout_alignTop="@id/cb_lunch"
-                    android:layout_alignBottom="@id/cb_lunch"
-                    android:text="2000 INR"
-                    android:layout_marginRight="@dimen/margin_24"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_s"
-                    android:textColor="@color/colorSecondaryText"
-                    />
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/et_lunch_timeslot"
@@ -329,23 +293,10 @@
                     android:id="@+id/cb_dinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorOrange"
                     android:text="Dinner"
                     android:layout_marginRight="@dimen/margin_16"/>
 
-                <TextView
-                    android:id="@+id/tv_dinner_price"
-                    android:gravity="center_vertical"
-                    android:layout_alignTop="@id/cb_dinner"
-                    android:layout_alignBottom="@id/cb_dinner"
-                    android:text="2000 INR"
-                    android:layout_marginRight="@dimen/margin_24"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_s"
-                    android:textColor="@color/colorSecondaryText"
-                    />
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/et_dinner_timeslot"

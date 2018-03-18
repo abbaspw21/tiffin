@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.support.design.widget.TabLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -31,6 +31,8 @@ import java.util.List;
 import tif.eurekalabs.com.R;
 import tif.eurekalabs.com.adapter.BannerListItemAdapter;
 import tif.eurekalabs.com.adapter.NearbyRestuarantsListItemAdapter;
+import tif.eurekalabs.com.adapter.PackageListItemAdapter;
+import tif.eurekalabs.com.model.PackageItem;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -39,7 +41,7 @@ import static com.google.android.gms.location.places.AutocompleteFilter.TYPE_FIL
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, TabLayout.OnTabSelectedListener {
 
     private TextView tvLocation;
     private TextView tvSubLocation;
@@ -47,15 +49,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     ImageView ivLocation;
 
-    RecyclerView rvBanner;
     RecyclerView rvRestaurants;
+
+    NearbyRestuarantsListItemAdapter adapterRestaurantsList;
+
+    RecyclerView rvBanner;
+
+    TabLayout tabs;
+
 
     View root;
 
     BannerListItemAdapter adapterBannerList;
-    NearbyRestuarantsListItemAdapter adapterRestaurantsList;
 
     List<Drawable> bannerList = new ArrayList<>();
+    List<PackageItem> packageList = new ArrayList<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -74,12 +82,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         rvBanner=(RecyclerView) root.findViewById(R.id.rv_banner);
         rvRestaurants=(RecyclerView) root.findViewById(R.id.rv_resturants);
 
+        tabs=(TabLayout) root.findViewById(R.id.tabs);
+
+        tabs.addTab(tabs.newTab().setText("Vendor"),0);
+        tabs.addTab(tabs.newTab().setText("Package"),1);
+
         bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_1));
         bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_2));
         bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_3));
         bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_1));
         bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_2));
         bannerList.add(ContextCompat.getDrawable(getContext(),R.drawable.img_ad_3));
+
+
+        packageList.add(new PackageItem("Daimond Pack",getResources().getString(R.string.Rs3000),"Loreum ipsum Loreum ipsum Loreum ipsum  Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum ",null));
+        packageList.add(new PackageItem("Golden Pack",getResources().getString(R.string.Rs1500),"Loreum ipsum Loreum ipsum Loreum ipsum  Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum ",null));
+        packageList.add(new PackageItem("Silver Pack",getResources().getString(R.string.Rs700),"Loreum ipsum Loreum ipsum Loreum ipsum  Loreum ipsum Loreum ipsum Loreum ipsum Loreum ipsum ",null));
 
         adapterBannerList = new BannerListItemAdapter(bannerList, getContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
@@ -93,6 +111,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         tvLocation.setOnClickListener(this);
         tvSubLocation.setOnClickListener(this);
+
+        tabs.addOnTabSelectedListener(this);
+
         return root;
     }
 
@@ -140,5 +161,37 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 // The user canceled the operation.
             }
         }
+    }
+
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        switch (tab.getPosition())
+        {
+            case 0:
+                rvRestaurants.removeAllViews();
+                adapterRestaurantsList=new NearbyRestuarantsListItemAdapter(bannerList,getContext());
+                RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getContext());
+                rvRestaurants.setLayoutManager(mLayoutManager2);
+                rvRestaurants.setAdapter(adapterRestaurantsList);
+                break;
+            case 1:
+                rvRestaurants.removeAllViews();
+                PackageListItemAdapter packageListItemAdapter=new PackageListItemAdapter(packageList,getContext());
+                RecyclerView.LayoutManager mLayoutManager3 = new LinearLayoutManager(getContext());
+                rvRestaurants.setLayoutManager(mLayoutManager3);
+                rvRestaurants.setAdapter(packageListItemAdapter);
+                break;
+        }
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }

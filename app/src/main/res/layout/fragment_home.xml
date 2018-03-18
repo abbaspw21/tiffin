@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBg"
     tools:context="tif.eurekalabs.com.fragment.HomeFragment">
 
@@ -72,6 +73,8 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_below="@id/location_holder">
 
         <RelativeLayout
@@ -98,27 +101,32 @@
 
             </android.support.v7.widget.RecyclerView>
 
-            <TextView
-                android:id="@+id/tv_nearby"
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:nestedScrollingEnabled="true"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_below="@id/rv_banner"
+                android:background="@color/colorBg"
+                app:tabTextColor="@color/colorSecondaryText"
+                app:tabSelectedTextColor="@color/colorOrange"
+                app:tabIndicatorColor="@color/colorOrange"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rv_banner"
-                android:layout_marginLeft="@dimen/margin_16"
-                android:layout_marginRight="@dimen/margin_16"
-                android:layout_marginTop="@dimen/margin_24"
-                android:layout_marginBottom="@dimen/margin_8"
-                android:fontFamily="sans-serif"
-                android:text="Nearby tiffin centers"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_size_xs" />
+                app:tabMode="fixed"
+                app:tabGravity="center"/>
+
 
             <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="@dimen/margin_8"
                 android:id="@+id/rv_resturants"
+                android:nestedScrollingEnabled="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/tv_nearby">
+                android:layout_below="@id/tabs"/>
 
-            </android.support.v7.widget.RecyclerView>
+
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>
 

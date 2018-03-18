@@ -2,14 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBg"
-    tools:context="tif.eurekalabs.com.fragment.packageWeeklyMenu.BreakfastFragment">
+    tools:context="tif.eurekalabs.com.fragment.OrdersFragment">
+
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_menu"
+        android:id="@+id/rv_order"
+        android:paddingTop="@dimen/margin_8"
+        android:clipToPadding="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

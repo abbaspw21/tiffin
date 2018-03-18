@@ -5,6 +5,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="Rs1500">\u20B9 1500</string>
+    <string name="Rs3000">\u20B9 3000</string>
+    <string name="Rs700">\u20B9 700</string>
+
     <string-array name="navigation_drawer_items_array">
         <item>Home</item>
         <item>Cart</item>

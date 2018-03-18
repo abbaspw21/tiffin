@@ -54,16 +54,7 @@ public class CartListItemAdapter extends RecyclerView.Adapter<CartListItemAdapte
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-    /*    LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View child1 =  li.inflate(R.layout.list_item_order_cart,null);
-        ((TextView) child1.findViewById(R.id.tv_name)).setText("Loreum Ipsum 1");
-        holder.llOrder.addView(child1);
-        View child2 =  li.inflate(R.layout.list_item_order_cart,null);
-        ((TextView) child2.findViewById(R.id.tv_name)).setText("Loreum Ipsum 2");
-        holder.llOrder.addView(child2);
-        View child3 =  li.inflate(R.layout.list_item_order_cart,null);
-        ((TextView) child3.findViewById(R.id.tv_name)).setText("Loreum Ipsum 3");
-        holder.llOrder.addView(child3);*/
+
     }
 
     @Override
