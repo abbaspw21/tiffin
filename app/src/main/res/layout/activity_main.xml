@@ -2,15 +2,15 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
-    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
 
     <LinearLayout
-        android:fitsSystemWindows="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="false"
         android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
@@ -22,8 +22,7 @@
             app:elevation="2dp"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        </android.support.v7.widget.Toolbar>
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"></android.support.v7.widget.Toolbar>
 
         <FrameLayout
             android:id="@+id/content_frame"
@@ -33,108 +32,138 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:fitsSystemWindows="true"
-        android:background="@color/colorBg"
+        android:layout_gravity="start"
         android:id="@+id/left_drawer"
         android:layout_width="240dp"
-        android:layout_gravity="start"
         android:layout_height="match_parent"
-       >
+        android:background="@color/colorBg"
+        android:fitsSystemWindows="true">
 
-        <RelativeLayout android:fitsSystemWindows="true"
+        <RelativeLayout
             android:id="@+id/rl_profile"
-            android:background="@color/colorPrimary"
             android:layout_width="240dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:fitsSystemWindows="true">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="144dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/bg_profile" />
+                android:src="@drawable/bg_profile"
+                android:visibility="gone" />
 
             <ImageView
-
                 android:id="@+id/iv_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:padding="@dimen/margin_16"
-                android:src="@drawable/ic_edit_white" />
+                android:src="@drawable/ic_edit_white"
+                />
 
 
             <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/iv_profile"
                 android:layout_width="56dp"
-                android:layout_marginTop="@dimen/margin_16"
-                android:layout_marginBottom="@dimen/margin_8"
                 android:layout_height="56dp"
-                app:civ_fill_color="@color/colorPrimary"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_16"
                 android:src="@drawable/ic_profile_default"
                 app:civ_border_color="@color/colorWhite"
-                app:civ_border_width="2dp" />
+                app:civ_border_width="2dp"
+                app:civ_fill_color="@color/colorPrimary" />
 
             <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/iv_profile"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/tv_name"
-                android:singleLine="true"
-                android:lines="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Abbas Piplodawala"
-                android:textSize="@dimen/text_size_s"
-                android:textStyle="bold"
                 android:layout_marginRight="@dimen/margin_16"
+                android:lines="1"
+                android:singleLine="true"
+                android:text="Abbas Piplodawala"
                 android:textColor="@color/colorWhite"
-                />
+                android:textSize="@dimen/text_size_s"
+                android:textStyle="bold" />
 
 
             <TextView
-                android:layout_marginTop="2dp"
+                android:id="@+id/tv_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/tv_name"
                 android:layout_centerHorizontal="true"
-                android:id="@+id/tv_contact"
-                android:singleLine="true"
-                android:lines="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+91-9806773241"
-                android:textSize="@dimen/text_size_xxs"
                 android:layout_marginRight="@dimen/margin_16"
+                android:layout_marginTop="2dp"
+                android:lines="1"
+                android:singleLine="true"
+                android:text="+91-9806773241"
                 android:textColor="@color/colorWhite"
-                />
+                android:textSize="@dimen/text_size_xxs"/>
 
             <TextView
-                android:layout_marginTop="2dp"
-                android:layout_below="@id/tv_contact"
-                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/margin_16"
                 android:id="@+id/tv_email"
-                android:singleLine="true"
-                android:lines="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="abbaspiplodawlaa@gmail.com"
-                android:textSize="@dimen/text_size_xxs"
+                android:layout_below="@id/tv_contact"
+                android:layout_centerHorizontal="true"
                 android:layout_marginRight="@dimen/margin_16"
+                android:layout_marginTop="2dp"
+                android:lines="1"
+                android:singleLine="true"
+                android:text="abbaspiplodawlaa@gmail.com"
                 android:textColor="@color/colorWhite"
-                />
+                android:textSize="@dimen/text_size_xxs" />
 
+
+            <TextView
+                android:visibility="gone"
+                android:layout_below="@id/iv_profile"
+                android:layout_marginLeft="@dimen/margin_16"
+                android:layout_marginRight="@dimen/margin_16"
+               android:id="@+id/tv_title"
+                android:textSize="@dimen/text_size_s"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorWhite"
+                android:text="Welcome Guest! "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_login"
+                android:layout_below="@id/tv_title"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/margin_4"
+                android:paddingBottom="@dimen/margin_4"
+                android:paddingLeft="@dimen/margin_16"
+                android:paddingRight="@dimen/margin_16"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorWhite"
+                android:gravity="center_horizontal"
+                android:text="Login / Signup"
+                android:textSize="@dimen/text_size_s"
+                />
         </RelativeLayout>
 
 
         <ListView
-            android:paddingTop="@dimen/margin_8"
-            android:divider="@color/colorBg"
-            android:dividerHeight="0dp"
-            android:layout_below="@id/rl_profile"
             android:id="@+id/lv_drawer"
             android:layout_width="240dp"
             android:layout_height="match_parent"
+            android:layout_below="@id/rl_profile"
             android:layout_gravity="start"
             android:background="@color/colorBg"
-            android:choiceMode="singleChoice"/>
+            android:choiceMode="singleChoice"
+            android:divider="@color/colorBg"
+            android:dividerHeight="0dp"
+            android:paddingTop="@dimen/margin_8" />
     </RelativeLayout>
 
 
@@ -252,20 +281,19 @@
         </LinearLayout>-->
 
 
-
-   <!-- <android.support.v4.view.ViewPager
-        android:id="@+id/fragment_holder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/ll_menu"
-        android:background="@color/colorWhite"></android.support.v4.view.ViewPager>-->
-<!--
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_above="@id/ll_menu"
-        android:background="@drawable/border_bottom_menu" />-->
+    <!-- <android.support.v4.view.ViewPager
+         android:id="@+id/fragment_holder"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:layout_above="@id/ll_menu"
+         android:background="@color/colorWhite"></android.support.v4.view.ViewPager>-->
+    <!--
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_above="@id/ll_menu"
+            android:background="@drawable/border_bottom_menu" />-->
 
 
 </android.support.v4.widget.DrawerLayout>

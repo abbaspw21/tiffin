@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tif.eurekalabs.com.PackageWeeklyMenuActivity">
+    tools:context="tif.eurekalabs.com.CartActivity">
+
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -19,9 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            android:elevation="0dp"
             android:visibility="visible"
-            app:elevation="0dp"
+            app:elevation="2dp"
+            app:contentInsetStartWithNavigation="0dp"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -31,43 +32,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="Menu Details"
+                android:text="Cart"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/text_size_l"
                 android:textStyle="bold" />
+
+
         </android.support.v7.widget.Toolbar>
+
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height"
-        android:background="@color/colorPrimary"
-        android:text="Book Now"
-        android:visibility="gone"
-        android:textSize="@dimen/text_size"
-        android:textColor="@color/colorWhite"
-        android:textAllCaps="false"
-        android:id="@+id/btn_book"
-        android:layout_alignParentBottom="true"
-        />
 
-    <TextView
-        android:layout_margin="@dimen/margin_8"
-        android:textSize="@dimen/text_size_s"
-        android:textColor="@color/colorPrimaryText"
-        android:id="@+id/tv_title"
-        android:text="Lunch Thali"
+    <LinearLayout
+        android:id="@+id/fragment_container"
         android:layout_below="@id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_menu"
-        android:layout_below="@id/tv_title"
-        android:layout_above="@id/btn_book"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
-
+    </LinearLayout>
 </RelativeLayout>

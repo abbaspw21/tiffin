@@ -60,7 +60,7 @@
                 android:textAllCaps="false"
                 android:textSize="@dimen/text_size_s"
                 android:layout_below="@id/address"
-                android:id="@+id/btn_edit"
+                android:id="@+id/tv_edit"
                 android:layout_toLeftOf="@id/btn_delete"
                 android:background="@color/colorWhite"
                 />

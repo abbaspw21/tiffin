@@ -157,6 +157,8 @@ public class RestaurantsDetailActivity extends AppCompatActivity implements AppB
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fl_view_cart:
+                Intent i=new Intent(this,CartActivity.class);
+                startActivity(i);
                 break;
         }
     }

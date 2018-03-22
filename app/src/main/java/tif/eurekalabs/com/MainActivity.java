@@ -1,30 +1,29 @@
 package tif.eurekalabs.com;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import tif.eurekalabs.com.adapter.DrawerListItemAdapter;
-import tif.eurekalabs.com.adapter.FragmentAdapter;
 import tif.eurekalabs.com.fragment.AddressBookFragment;
 import tif.eurekalabs.com.fragment.CartFragment;
 import tif.eurekalabs.com.fragment.HomeFragment;
 import tif.eurekalabs.com.fragment.OrdersFragment;
+import tif.eurekalabs.com.misc.Constant;
 import tif.eurekalabs.com.model.DrawerItem;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,20 +31,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String[] mNavigationDrawerItemTitles;
 
     private DrawerLayout mDrawerLayout;
+
     private ListView lvDrawer;
 
-    RelativeLayout rlDrawer;
+    private RelativeLayout rlDrawer;
 
-    ActionBarDrawerToggle mDrawerToggle;
+    private ActionBarDrawerToggle mDrawerToggle;
 
-    Toolbar toolbar;
+    private Toolbar toolbar;
 
-    String TAG = "MainActivity";
+    private ImageView ivEdit;
+
+    private TextView tvName;
+    private TextView tvEmail;
+    private TextView tvContact;
+    private TextView tvTitle;
+    private TextView tvLogin;
+
+    private boolean isLoggedIn;
+
+    private static String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        isLoggedIn = prefs.getBoolean(Constant.IS_LOGGED_IN_KEY, false);
 
         mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
 
@@ -58,6 +71,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        ivEdit=(ImageView) findViewById(R.id.iv_edit);
+
+        tvName=(TextView) findViewById(R.id.tv_name);
+        tvEmail=(TextView) findViewById(R.id.tv_email);
+        tvContact=(TextView) findViewById(R.id.tv_contact);
+        tvTitle=(TextView) findViewById(R.id.tv_title);
+        tvLogin=(TextView) findViewById(R.id.tv_login);
 
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
@@ -79,11 +100,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         lvDrawer.setOnItemClickListener(new DrawerItemClickListener());
 
         mDrawerToggle = new android.support.v7.app.ActionBarDrawerToggle(this,mDrawerLayout,toolbar,R.string.app_name, R.string.app_name);
-
         mDrawerToggle.syncState();
 
         selectItem(0);
 
+        if (isLoggedIn)
+        {
+            tvLogin.setVisibility(View.GONE);
+            tvTitle.setVisibility(View.GONE);
+            tvEmail.setVisibility(View.VISIBLE);
+            tvContact.setVisibility(View.VISIBLE);
+            tvName.setVisibility(View.VISIBLE);
+        }else {
+            tvTitle.setVisibility(View.VISIBLE);
+            tvLogin.setVisibility(View.VISIBLE);
+            tvEmail.setVisibility(View.GONE);
+            tvContact.setVisibility(View.GONE);
+            tvName.setVisibility(View.GONE);
+        }
+
+        ivEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MainActivity.this,ProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
+        tvLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 

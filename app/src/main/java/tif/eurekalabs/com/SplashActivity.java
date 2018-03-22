@@ -45,6 +45,8 @@ public class SplashActivity extends AppCompatActivity {
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
             final boolean isLoggedIn = prefs.getBoolean(Constant.IS_LOGGED_IN_KEY, false);
+            final boolean isFirstLaunch = prefs.getBoolean(Constant.IS_FIRST_LAUNCH_KEY ,true);
+            final boolean isLocationSet = prefs.getBoolean(Constant.IS_LOCATION_SET_KEY, false);
 
             Thread timer = new Thread() {
                 public void run() {
