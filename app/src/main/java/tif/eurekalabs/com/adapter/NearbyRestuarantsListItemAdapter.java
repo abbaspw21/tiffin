@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,7 +16,6 @@ import java.util.List;
 import tif.eurekalabs.com.BookPackageActivity;
 import tif.eurekalabs.com.R;
 import tif.eurekalabs.com.RestaurantsDetailActivity;
-import tif.eurekalabs.com.SelectPackageActivity;
 
 
 /**
@@ -105,8 +103,8 @@ public class NearbyRestuarantsListItemAdapter extends RecyclerView.Adapter<Nearb
                     context.startActivity(i);
                 }
                 else if(choice==1) {
-                    Intent i = new Intent(context, SelectPackageActivity.class);
-                    i.putExtra("title","name");
+                    Intent i = new Intent(context, BookPackageActivity.class);
+                    i.putExtra("title","name");//
                     activity.setResult(Activity.RESULT_OK,i);
                     activity.finish();
                 }

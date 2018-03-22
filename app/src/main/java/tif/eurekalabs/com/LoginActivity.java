@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         btnSignIn.setOnClickListener(this);
 
         tvSignUp.setOnClickListener(this);
-
+        tvForgotPswd.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("388282401496-qc8cp8hou8cndv9822j3jsm6e0i5hj4u.apps.googleusercontent.com")
@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e(TAG, "resultcode"+requestCode);
+        Log.e(TAG, "resultcode" + requestCode);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -199,6 +199,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         name = jsonObj.getString("name");
                         email = jsonObj.getString("email");
 
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(i);
                         Log.e(TAG, "Name: " + name + ", email: " + email);
 
                     }
@@ -235,6 +237,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             String personPhotoUrl = acct.getPhotoUrl().toString();
             String email = acct.getEmail();
 
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(i);
             Log.e(TAG, "Name: " + personName + ", email: " + email
                     + ", Image: " + personPhotoUrl);
             // Toast.makeText(this, "Welcome " + personName, Toast.LENGTH_LONG).show();
@@ -261,13 +265,20 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 if (ConnectionDetector.isConnectingToInternet(LoginActivity.this)) {
                     signIn();
                 } else {
-                   // Misc.createSnackbarRed("Please check internet connection", parent, LoginActivity.this);
+                    // Misc.createSnackbarRed("Please check internet connection", parent, LoginActivity.this);
                 }
                 break;
             case R.id.btn_login:
-                Intent i=new Intent(LoginActivity.this,RestaurantsDetailActivity.class);
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 break;
+            case R.id.tv_forgot_pswd:
+                Intent i2=new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+                startActivity(i2);
+                break;
+            case R.id.tv_signup:
+                Intent i3=new Intent(LoginActivity.this,SignupActivity.class);
+                startActivity(i3);
         }
     }
 }

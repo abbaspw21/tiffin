@@ -38,7 +38,6 @@
         <activity
             android:name=".RestaurantsDetailActivity"
             android:theme="@style/TransparentStatus" />
-        <activity android:name=".SelectPackageActivity" />
         <activity android:name=".PackageWeeklyMenuActivity" />
         <activity android:name=".BookPackageActivity" />
         <activity android:name=".OTPActivity" />

@@ -86,14 +86,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        DrawerItem[] drawerItem = new DrawerItem[7];
+        DrawerItem[] drawerItem = new DrawerItem[8];
         drawerItem[0] = new DrawerItem(R.drawable.ic_home_white, "Home");
         drawerItem[1] = new DrawerItem(R.drawable.ic_cart_white, "Cart");
         drawerItem[2] = new DrawerItem(R.drawable.ic_orders_white, "Orders");
         drawerItem[3] = new DrawerItem(R.drawable.ic_address_book_white, "Address Book");
-        drawerItem[4] = new DrawerItem(R.drawable.ic_offers_white, "Offers");
-        drawerItem[5] = new DrawerItem(R.drawable.ic_contact_us_white, "Contact Us");
-        drawerItem[6] = new DrawerItem(R.drawable.ic_help_white, "Help");
+        drawerItem[4] = new DrawerItem(R.drawable.ic_wallet_white, "Wallet");
+        drawerItem[5] = new DrawerItem(R.drawable.ic_offers_white, "Offers");
+        drawerItem[6] = new DrawerItem(R.drawable.ic_contact_us_white, "Contact Us");
+        drawerItem[7] = new DrawerItem(R.drawable.ic_help_white, "Help");
 
         DrawerListItemAdapter adapter = new DrawerListItemAdapter(this, R.layout.list_item_drawer_menu, drawerItem);
         lvDrawer.setAdapter(adapter);
